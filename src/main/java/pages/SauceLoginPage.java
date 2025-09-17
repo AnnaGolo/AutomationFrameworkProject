@@ -22,7 +22,5 @@ public class SauceLoginPage extends BasePage {
         driver.findElement(password).clear();
         driver.findElement(password).sendKeys(secretSauce);
         driver.findElement(loginBtn).click();
-
     }
-
 }

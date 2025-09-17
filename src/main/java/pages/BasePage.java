@@ -3,10 +3,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.Map;
 
 public abstract class BasePage{
         protected WebDriver driver;
@@ -37,6 +41,16 @@ public abstract class BasePage{
             } catch (NoSuchElementException | StaleElementReferenceException e) {
                 return false;
             }
+        }
+        public static WebDriver createChromeDriver(){
+            ChromeOptions options = new ChromeOptions();
+            Map<String, Object> prefs = new HashMap<>();
+            prefs.put("credentials_enable_service", false);
+            prefs.put("profile.password_manager_enabled", false);
+            options.setExperimentalOption("prefs",prefs);
+
+            options.addArguments("--incognito");
+            return new ChromeDriver(options);
         }
     }
 
