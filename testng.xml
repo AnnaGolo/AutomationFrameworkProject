@@ -1,9 +1,9 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 <suite name = "DemoSuite" parallel="false">
     <listeners>
-        <listener class-name="utils.TestListener"/>
+        <listener class-name="listeners.BuiltInReportListener"/>
     </listeners>
-    <test name = "DemoTest">
+    <test name = "listeners.BuiltInReportListener">
         <classes>
             <class name="tests.SauceDemoTest"/>
         </classes>
