@@ -1,8 +1,5 @@
 package pages;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -37,8 +34,8 @@ public abstract class BasePage{
         }
         public boolean isDisplayed(By locator){
             try {
-                return driver.findElement(locator).isDisplayed();
-            } catch (NoSuchElementException | StaleElementReferenceException e) {
+                return wait.until(ExpectedConditions.visibilityOfElementLocated(locator)).isDisplayed();
+            } catch (TimeoutException e) {
                 return false;
             }
         }
