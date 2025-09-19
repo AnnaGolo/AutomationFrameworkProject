@@ -1,6 +1,8 @@
 package tests;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -9,6 +11,8 @@ import org.testng.annotations.Test;
 import pages.BasePage;
 import pages.InventoryPage;
 import pages.SauceLoginPage;
+
+import java.time.Duration;
 
 public class InventoryPageTest {
     private WebDriver driver;
@@ -51,6 +55,11 @@ public class InventoryPageTest {
         inventoryPage.addProductToTheCart();
     }
     @Test
+    public void removeProductFromTheCart() {
+        inventoryPage.addProductToTheCart();
+        inventoryPage.removeProductFromTheCart();
+    }
+    @Test
     public void cartCount_initiallyZero() {
         Assert.assertEquals(inventoryPage.getCartCount(), 0);
     }
@@ -88,6 +97,73 @@ public class InventoryPageTest {
         inventoryPage.selectSortOption(value);
         Assert.assertEquals(inventoryPage.getSelectedOption(), expectedText);
     }
+    @Test
+    public void  getProductCount() {
+        new WebDriverWait(driver, Duration.ofSeconds(5))
+                .until(ExpectedConditions.urlContains("inventory.html"));
+        Assert.assertEquals(inventoryPage.getProductCount(), 6);
+
+    }
+    @Test
+    public void appLogoPresent() {
+        Assert.assertTrue(inventoryPage.appLogoPresent());
+    }
+    @Test
+    public void isBackPackPictureIsDiplayed(){
+        Assert.assertTrue(inventoryPage.isBackpackPictureDisplayed());
+    }
+    @Test
+    public void isShoppingCardIsDisplayed(){
+        Assert.assertTrue(inventoryPage.isShoppingCardDisplayed());
+    }
+    @Test
+    public void twitterIconIsDisplayed(){
+        new WebDriverWait(driver, Duration.ofSeconds(5));
+        inventoryPage.twitterIconIsDisplayed();
+    }
+    @Test
+    public void twitterIconIsClickable(){
+        inventoryPage.twitterButtonIsClickable();
+    }
+
+    @Test
+    public void facebookIconIsDisplayed(){
+        inventoryPage.facebookIconIsDisplayed();
+    }
+    @Test
+    public void facebookButtonIsClickable(){
+        inventoryPage.facebookButtonIsClickable();
+    }
+    @Test
+    public void linkedInIconIsDisplayed(){
+        inventoryPage.linkedInIconIsDisplayed();
+    }
+    @Test
+    public void linkedInButtonIsClickable() {
+        inventoryPage.linkedInButtonIsClickable();
+    }
+    @Test
+    public void setFooterCopyRightText() {
+        String expected = inventoryPage.setFooterCopyRightText();
+        Assert.assertEquals(expected, "© 2025 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy");
+    }
+    @Test
+    public void isBurgerButtonDisplayed(){
+       inventoryPage.isBurgerButtonDisplayed();
+    }
+    @Test
+    public void isBurgerButtonIsClickable() {
+        inventoryPage.isBurgerButtonIsClickable();
+    }
+    @Test
+    public void isLogoutButtonDisplayed(){
+        inventoryPage.isLogoutButtonDisplayed();
+    }
+    @Test
+    public void isCartButtonDisplayed(){
+        inventoryPage.isResetButtonDisplayed();
+    }
+
     @AfterMethod
     public void tearD() {
         if (driver != null)
