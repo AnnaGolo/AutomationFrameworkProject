@@ -13,7 +13,7 @@ import java.util.List;
 public class InventoryPage extends BasePage {
 
     private final By sauceLabsBackpackProductTitle = By.xpath("(//div[@class=\"inventory_item_name \"])[1]");
-    private final By addToCartButton = By.id("add-to-cart-sauce-labs-backpack");
+    private final By addToCartButton = By.cssSelector("button[data-test ='add-to-cart-sauce-labs-backpack']");
     private final By productDescription = By.xpath("(//div[@class = 'inventory_item_desc'])[1]");
     private final By appLogo = By.cssSelector(".app_logo");
     private final By cartLogo = By.cssSelector(".shopping_cart_badge");
@@ -22,7 +22,7 @@ public class InventoryPage extends BasePage {
     private final By backPackprice = By.xpath("(//div[@data-test= 'inventory-item-price'])[1]");
     private final By backPackImage = By.xpath("//img[@data-test=\"inventory-item-sauce-labs-backpack-img\"]");
     private final By filterDropdown = By.xpath("//select[@class=\"product_sort_container\"]");
-    private final By removeProductButton = By.xpath("//button[text()='Remove']");
+    private final By removeProductButton = By.cssSelector("button[data-test='remove-sauce-labs-backpack']");
     private final By twitterIcon = By.xpath("//a[@data-test ='social-twitter']");
     private final By facebookIcon = By.xpath("//a[@data-test=\"social-facebook\"]");
     private final By linkedInIcon = By.xpath("//a[@data-test=\"social-linkedin\"]");
@@ -49,6 +49,9 @@ public class InventoryPage extends BasePage {
     public boolean isProductTitleDisplayed() {
         return driver.findElement(sauceLabsBackpackProductTitle).isDisplayed();
     }
+    public void isProductTitleButtonIsClickable(){
+        driver.findElement(sauceLabsBackpackProductTitle).click();
+    }
 
     public boolean isProductImageDisplayed() {
         return driver.findElement(cartIcon).isDisplayed();
@@ -68,7 +71,9 @@ public class InventoryPage extends BasePage {
     }
 
     public void addProductToTheCart() {
-        driver.findElement(addToCartButton).click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(addToCartButton)).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(removeProductButton));
     }
 
     public int getCartCount() {
