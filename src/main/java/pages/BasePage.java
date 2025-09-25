@@ -17,7 +17,11 @@ public abstract class BasePage{
             this.driver = driver;
             this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         }
-            public String getTitle(){
+
+    protected BasePage() {
+    }
+
+    public String getTitle(){
                 return driver.getTitle();
         }
             public String getCurrentUrl(){

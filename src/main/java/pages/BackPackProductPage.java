@@ -70,5 +70,8 @@ public class BackPackProductPage extends BasePage {
     public boolean CartIconIsDisplayed() {
         return driver.findElement(cartIcon).isDisplayed();
     }
+    public void clickCartIcon(){
+        driver.findElement(cartIcon).click();
+    }
 
 }
