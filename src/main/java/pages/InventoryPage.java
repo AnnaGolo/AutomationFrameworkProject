@@ -69,6 +69,9 @@ public class InventoryPage extends BasePage {
         WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(backPackprice));
         return element.getText();
     }
+    public void clickBackPackPackTitle(){
+        driver.findElement(sauceLabsBackpackProductTitle).click();
+    }
 
     public void addProductToTheCart() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
